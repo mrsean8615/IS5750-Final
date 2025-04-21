@@ -1,0 +1,44 @@
+<!-- Trainers Index Section -->
+<section id="trainers-index" class="section trainers-index">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Meet our</h2>
+        <p>Talented Trainers</p>
+    </div>
+    <!-- End Section Title -->
+
+    <div class="container">
+        <div class="row">
+
+            <% trainers.forEach((trainer)=> { %>
+                <div class="col-lg-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+                    <div class="member">
+                        <img src="<%=trainer.imageUrl%>" class="img-fluid" alt="" />
+                        <div class="member-content">
+                            <h4>
+                                <%=trainer.name%>
+                            </h4>
+                            <span>
+                                <%=trainer.subject%>
+                            </span>
+                            <p>
+                                <%=trainer.description%>
+                            </p>
+                            <div class="social">
+                                <a href=""><i class="bi bi-twitter-x"></i></a>
+                                <a href=""><i class="bi bi-facebook"></i></a>
+                                <a href=""><i class="bi bi-instagram"></i></a>
+                                <a href=""><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Team Member -->
+                <% }) %>
+
+
+
+        </div>
+    </div>
+</section>
+<!-- /Trainers Index Section -->

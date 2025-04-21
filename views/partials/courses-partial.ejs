@@ -1,0 +1,51 @@
+<!-- Courses Section -->
+<section id="courses" class="courses section">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Our most</h2>
+        <p>Popular Courses</p>
+    </div>
+    <!-- End Section Title -->
+
+    <div class="container">
+        <div class="row">
+            <% top3Courses.forEach((course)=> { %>
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="course-item">
+                        <img src="<%=course.imageUrl%>" class="img-fluid" alt="..." />
+                        <div class="course-content">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <p class="category">
+                                    <%=course.title%>
+                                </p>
+                                <p class="price">
+                                    <%=course.price%>
+                                </p>
+                            </div>
+
+                            <h3><a href="/courses/<%=course.titleSlug%>">
+                                    <%=course.title%>
+                                </a></h3>
+                            <p class="description">
+                                <%=course.description%>
+                            </p>
+                            <div class="trainer d-flex justify-content-between align-items-center">
+                                <div class="trainer-profile d-flex align-items-center">
+                                    <img src="<%=course.trainer.imageUrl%>" class="img-fluid" alt="" />
+                                    <a href="" class="trainer-link">
+                                        <%=course.trainer.name%>
+                                    </a>
+                                </div>
+                                <div class="trainer-rank d-flex align-items-center">
+                                    <i class="bi bi-person user-icon"></i>&nbsp;<%=course.registrants%> &nbsp;&nbsp;
+                                        <i class="bi bi-heart heart-icon"></i>&nbsp;<%=course.likes%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+    </div>
+</section>
+<!-- End Courses Section -->

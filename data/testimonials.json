@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Saul Goodman",
+    "profession": "CEO & Founder",
+    "rating": 4,
+    "message": "The mentorship program exceeded my expectations. The instructors are highly qualified and the course content is perfectly structured for real-world application. I've seen tremendous growth in my team's capabilities.",
+    "imageUrl": "/assets/img/testimonials/testimonials-1.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Sara Wilsson",
+    "profession": "Designer",
+    "rating": 5,
+    "message": "As a designer, finding a program that balances technical skills with creative aspects was crucial. This platform delivered exactly that. The UI/UX course has transformed how I approach design challenges.",
+    "imageUrl": "/assets/img/testimonials/testimonials-2.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Jena Karlis",
+    "profession": "Store Owner",
+    "rating": 4,
+    "message": "The e-commerce management course was exactly what I needed for my online business. The practical insights and hands-on training helped me optimize my store operations and increase sales by 40%.",
+    "imageUrl": "/assets/img/testimonials/testimonials-3.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Matt Brandon",
+    "profession": "Freelancer",
+    "rating": 3,
+    "message": "The flexible learning schedule and comprehensive course material helped me transition into full-stack development. The mentors were always available to help, making the learning process much smoother.",
+    "imageUrl": "/assets/img/testimonials/testimonials-4.jpg"
+  },
+  {
+    "id": 5,
+    "name": "John Larson",
+    "profession": "Entrepreneur",
+    "rating": 5,
+    "message": "The startup mentorship program provided invaluable insights into scaling my business. The combination of technical knowledge and business strategy was perfect for early-stage entrepreneurs like myself.",
+    "imageUrl": "/assets/img/testimonials/testimonials-5.jpg"
+  }
+]

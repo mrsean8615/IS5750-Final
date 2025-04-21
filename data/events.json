@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "Web Development Workshop",
+    "summary": "Hands-on workshop covering modern web development practices and tools",
+    "imageUrl": "/assets/img/events-item-1.jpg",
+    "date": "2024-04-15T14:12:30"
+  },
+  {
+    "id": 2,
+    "title": "Data Science Summit",
+    "summary": "Industry experts share insights on AI and machine learning applications",
+    "imageUrl": "/assets/img/events-item-2.jpg",
+    "date": "2024-05-20T09:15:30"
+  },
+  {
+    "id": 3,
+    "title": "Mobile App Development Bootcamp",
+    "summary": "Intensive training on iOS and Android development fundamentals",
+    "imageUrl": "/assets/img/events-item-1.jpg",
+    "date": "2024-06-10T10:19:00"
+  },
+  {
+    "id": 4,
+    "title": "Cloud Computing Conference",
+    "summary": "Latest trends and best practices in cloud architecture and DevOps",
+    "imageUrl": "/assets/img/events-item-2.jpg",
+    "date": "2024-07-05T13:14:45"
+  }
+]

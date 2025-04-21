@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Michael Stevens",
+    "subject": "Data Science",
+    "imageUrl": "/assets/img/team/team-1.jpg",
+    "description": "Expert in data analytics and machine learning with 10 years of industry experience. Specializes in Python and statistical analysis."
+  },
+  {
+    "id": 2,
+    "name": "Emily Thompson",
+    "subject": "UI/UX Design",
+    "imageUrl": "/assets/img/team/team-2.jpg",
+    "description": "Creative design leader with a passion for user-centered approaches. Brings modern design principles to every project."
+  },
+  {
+    "id": 3,
+    "name": "David Miller",
+    "subject": "Software Engineering",
+    "imageUrl": "/assets/img/team/team-3.jpg",
+    "description": "Full-stack developer specializing in modern JavaScript frameworks and cloud architecture. AWS certified professional."
+  },
+  {
+    "id": 4,
+    "name": "Rachel Chen",
+    "subject": "Cybersecurity",
+    "imageUrl": "/assets/img/team/team-4.jpg",
+    "description": "Information security expert with focus on network protection and ethical hacking. Leading certification instructor."
+  },
+  {
+    "id": 5,
+    "name": "James Wilson",
+    "subject": "Mobile Development",
+    "imageUrl": "/assets/img/team/team-5.jpg",
+    "description": "iOS and Android development specialist with extensive experience in native and cross-platform frameworks."
+  },
+  {
+    "id": 6,
+    "name": "Janna Parker",
+    "subject": "Cloud Architecture",
+    "imageUrl": "/assets/img/team/team-6.jpg",
+    "description": "Enterprise cloud solutions architect with expertise in AWS and Azure. Specializes in scalable infrastructure and DevOps practices."
+  }
+]

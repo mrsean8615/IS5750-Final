@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "title": "Introduction to Python Data Science",
+    "imageUrl": "/assets/img/course-1.jpg",
+    "summary": "Learn the fundamentals of data science using Python and popular libraries",
+    "description": "This comprehensive course covers Python basics, data manipulation with Pandas, data visualization with Matplotlib, and introduction to machine learning with Scikit-learn. Perfect for beginners in data science.",
+    "price": 299.99,
+    "capacity": 30,
+    "registrants": 25,
+    "likes": 45,
+    "trainerId": 1
+  },
+  {
+    "id": 2,
+    "title": "Modern UI/UX Design Principles",
+    "imageUrl": "/assets/img/course-2.jpg",
+    "summary": "Master the art of creating user-friendly and aesthetically pleasing interfaces",
+    "description": "Dive deep into modern design principles, user research methods, wireframing, prototyping, and user testing. Learn industry-standard tools like Figma and Adobe XD.",
+    "price": 249.99,
+    "capacity": 25,
+    "registrants": 20,
+    "likes": 38,
+    "trainerId": 2
+  },
+  {
+    "id": 3,
+    "title": "Full Stack JavaScript Development",
+    "imageUrl": "/assets/img/course-3.jpg",
+    "summary": "Build modern web applications with JavaScript, Node.js, and React",
+    "description": "Complete guide to modern JavaScript development. Cover everything from ES6+ features to building full-stack applications using Node.js, Express, React, and MongoDB.",
+    "price": 399.99,
+    "capacity": 35,
+    "registrants": 28,
+    "likes": 52,
+    "trainerId": 3
+  },
+  {
+    "id": 4,
+    "title": "Ethical Hacking Fundamentals",
+    "imageUrl": "/assets/img/course-1.jpg",
+    "summary": "Learn cybersecurity basics and ethical hacking techniques",
+    "description": "Comprehensive introduction to cybersecurity, covering network security, penetration testing, vulnerability assessment, and security best practices. Includes hands-on labs and real-world scenarios.",
+    "price": 349.99,
+    "capacity": 20,
+    "registrants": 18,
+    "likes": 41,
+    "trainerId": 4
+  },
+  {
+    "id": 5,
+    "title": "Cross-Platform Mobile Development",
+    "imageUrl": "/assets/img/course-2.jpg",
+    "summary": "Build iOS and Android apps using React Native",
+    "description": "Learn to develop mobile applications for both iOS and Android platforms using React Native. Cover app architecture, native components, state management, and deployment processes.",
+    "price": 329.99,
+    "capacity": 25,
+    "registrants": 22,
+    "likes": 35,
+    "trainerId": 5
+  },
+  {
+    "id": 6,
+    "title": "AWS Cloud Architecture",
+    "imageUrl": "/assets/img/course-3.jpg",
+    "summary": "Master cloud computing with Amazon Web Services",
+    "description": "Comprehensive guide to AWS cloud services, covering EC2, S3, Lambda, API Gateway, and more. Learn to design scalable and secure cloud infrastructure for enterprise applications.",
+    "price": 449.99,
+    "capacity": 30,
+    "registrants": 27,
+    "likes": 48,
+    "trainerId": 6
+  }
+]

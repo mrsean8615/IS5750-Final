@@ -1,0 +1,95 @@
+<main class="main">
+  <!-- Hero Section -->
+  <section id="hero" class="hero section dark-background">
+    <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in" />
+
+    <div class="container">
+      <h2 data-aos="fade-up" data-aos-delay="100">
+        Learning Today,<br />Leading Tomorrow
+      </h2>
+      <p data-aos="fade-up" data-aos-delay="200">
+        Unlock Potential. Elevate Skills. Transform Careers.
+      </p>
+      <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
+        <a href="courses.html" class="btn-get-started">Get Started</a>
+      </div>
+    </div>
+  </section>
+  <!-- End Hero Section -->
+
+  <%- include('partials/about-partial') %>
+
+    <!-- Counts Section -->
+    <%- include('partials/counts-partial') %>
+
+      <!-- Why Us Section -->
+      <section id="why-us" class="section why-us">
+        <div class="container">
+          <div class="row gy-4">
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+              <div class="why-box">
+                <h3>Why Choose Mentor?</h3>
+                <p>
+                  At Mentor, we are committed to delivering high-quality training
+                  programs that empower individuals and organizations to succeed.
+                  Our expert-led courses, flexible learning options, and practical
+                  approach ensure you gain the skills needed to thrive in today's
+                  competitive landscape.
+                </p>
+                <div class="text-center">
+                  <a href="#" class="more-btn"><span>Learn More</span> <i class="bi bi-chevron-right"></i></a>
+                </div>
+              </div>
+            </div>
+            <!-- End Why Box -->
+
+            <div class="col-lg-8 d-flex align-items-stretch">
+              <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-xl-4">
+                  <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                    <i class="bi bi-clipboard-data"></i>
+                    <h4>Expert-Led Training</h4>
+                    <p>
+                      Learn from industry professionals with real-world experience
+                      and deep subject matter expertise.
+                    </p>
+                  </div>
+                </div>
+                <!-- End Icon Box -->
+
+                <div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
+                  <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                    <i class="bi bi-gem"></i>
+                    <h4>Practical & Engaging Courses</h4>
+                    <p>
+                      Gain hands-on experience with interactive learning, case
+                      studies, and real-world applications.
+                    </p>
+                  </div>
+                </div>
+                <!-- End Icon Box -->
+
+                <div class="col-xl-4" data-aos="fade-up" data-aos-delay="400">
+                  <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                    <i class="bi bi-inboxes"></i>
+                    <h4>Flexible Learning Options</h4>
+                    <p>
+                      Access training at your convenience with in-person, online,
+                      and hybrid course offerings.
+                    </p>
+                  </div>
+                </div>
+                <!-- End Icon Box -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- End Why Us Section -->
+
+      <%- include('partials/courses-partial') %>
+        <%- include('partials/trainers-partial') %>
+
+
+</main>

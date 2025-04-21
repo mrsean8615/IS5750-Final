@@ -1,0 +1,76 @@
+<main class="main">
+  <!-- Page Title -->
+  <div class="page-title" data-aos="fade">
+    <div class="heading">
+      <div class="container">
+        <div class="row d-flex justify-content-center text-center">
+          <div class="col-lg-8">
+            <h1>Events</h1>
+            <p class="mb-0">
+              Stay connected and keep learning with Mentor’s upcoming events.
+              From workshops and seminars to networking opportunities and live
+              training sessions, our events are designed to inspire, educate,
+              and empower you to achieve your goals.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="breadcrumbs">
+      <div class="container">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li class="current">Events</li>
+        </ol>
+      </div>
+    </nav>
+  </div>
+
+  <!-- End Page Title -->
+
+  <!-- Events Section -->
+  <section id="events" class="events section">
+    <div class="container" data-aos="fade-up">
+      <div class="row">
+        <% if (events.length===0) { %>
+          <div class="col-md-12 d-flex align-items-stretch">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">
+                  No events found
+                </h5>
+                <p class="card-text">
+                  There are no upcoming events at this time. Please check back
+                  later for updates.
+                </p>
+              </div>
+            </div>
+            <% } else { %>
+              <% events.forEach((event)=> { %>
+                <div class="col-md-6 d-flex align-items-stretch">
+                  <div class="card">
+                    <div class="card-img">
+                      <img src="<%=event.imageUrl%>" alt="<%=event.title%>" />
+                    </div>
+                    <div class="card-body centered">
+                      <h5 class="card-title">
+                        <a href="">
+                          <%=event.title%>
+                        </a>
+                      </h5>
+                      <p class="fst-italic text-center">
+                        <%=formatDate(event.date)%>
+                      </p>
+                      <p class="card-text">
+                        <%=event.summary%>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <% }) %>
+                  <% } %>
+          </div>
+      </div>
+  </section>
+  <!-- /Events Section -->
+</main>
