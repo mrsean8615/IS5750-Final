@@ -36,16 +36,43 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
 </head>
 
 <body class="about-page">
+  <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 9999;">
+    <% if (flashMessages.success) { %>
+      <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-success text-white">
+          <strong class="me-auto">Success</strong>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          <%= flashMessages.success %>
+        </div>
+      </div>
+      <% } %>
+
+        <% if (flashMessages.error) { %>
+          <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-danger text-white">
+              <strong class="me-auto">Error</strong>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
+                aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+              <%= flashMessages.error %>
+            </div>
+          </div>
+          <% } %>
+  </div>
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
       <a href="/" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="sitename">
-          <%= username ? `Welcome to Mentor ${username}`: 'Mentor' %>
+          Mentor
         </h1>
       </a>
 
@@ -69,15 +96,33 @@
           <li>
             <a href="/contacts/new" class="<%= title === 'Contact' ? 'active': ''%>">Contact</a>
           </li>
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
 
-      <% if (isAuthenticated) { %>
-        <a class="btn-getstarted" href="/auth/logout">Logout</a>
-        <% } else { %>
-          <a class="btn-getstarted" href="/auth/login">Login/Signup</a>
-          <% } %>
+          <!-- Not the most elegant solution, but I couldn't waste too much time on web responsiveness here. -->
+          <li class="dropdown">
+            <a href="#"><i class="bi bi-list" style="font-size: 24px;"></i></a>
+            <ul>
+              <% if (isAuthenticated) { %>
+                <% if (isAdmin) { %>
+                  <li><a href="/courses/admin/create-course">Create Course</a></li>
+                  <li><a href="/contacts/admin/contact-response">Contact Response</a></li>
+                  <li><a href="/trainers/admin/create">Create Trainer</a></li>
+                  <li><a href="/trainers/admin/manage">Manage Trainers</a></li>
+
+                  <% } %>
+                    <li><a href="/api/externalapi">External API</a></li>
+                    <li><a href="/auth/logout">Logout</a></li>
+
+                    <% } else { %>
+                      <li><a href="/auth/login">Login</a></li>
+                      <li><a href="/auth/signup">Sign Up</a></li>
+                      <li><a href="/api/externalapi">External API</a></li>
+                      <% } %>
+            </ul>
+          </li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list">
+        </i>
+      </nav>
     </div>
   </header>
 
@@ -184,6 +229,18 @@
 
     <!-- Main JS File -->
     <script src="/assets/js/main.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toastElList = document.querySelectorAll('.toast');
+        toastElList.forEach(toastEl => {
+          const toast = new bootstrap.Toast(toastEl, {
+            autohide: true,
+            delay: 5000
+          });
+          toast.show();
+        });
+      });
+    </script>
 </body>
 
 </html>

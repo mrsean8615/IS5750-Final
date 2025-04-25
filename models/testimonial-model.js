@@ -1,38 +1,35 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../util/database');
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-
-const Testimonial = sequelize.define('testimonial', {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        allowNull: false,
-        primaryKey: true
-    },
+const testimonialSchema = new Schema({
     name: {
-        type: DataTypes.STRING(50),
-        allowNull: false,
+        type: String,
+        required: [true, 'Name is required'],
+        maxLength: [50, 'Name cannot be longer than 50 characters']
     },
     profession: {
-        type: DataTypes.STRING(50),
-        allowNull: false,
+        type: String,
+        required: [true, 'Profession is required'],
+        maxLength: [50, 'Profession cannot be longer than 50 characters']
     },
     rating: {
-        type: DataTypes.INTEGER,
-        allowNull: false
+        type: Number,
+        required: [true, 'Rating is required']
     },
     message: {
-        type: DataTypes.TEXT,
-        allowNull: false
+        type: String,
+        required: [true, 'Message is required']
     },
     imageUrl: {
-        type: DataTypes.STRING(255),
-        allowNull: false
+        type: String,
+        required: [true, 'Image URL is required'],
+        maxLength: [255, 'Image URL cannot be longer than 255 characters']
     }
-
 }, {
-    tableName: 'testimonials',
-    underscored: true
+    timestamps: true,
+    collection: 'testimonials'
 });
+
+const Testimonial = mongoose.model('Testimonial', testimonialSchema);
 
 module.exports = Testimonial;

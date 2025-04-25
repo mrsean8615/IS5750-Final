@@ -1,61 +1,48 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../util/database');
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-const Contact = sequelize.define('contact', {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        allowNull: false,
-        primaryKey: true
-    },
+const contactSchema = new Schema({
     name: {
-        type: DataTypes.STRING(50),
-        allowNull: false,
+        type: String,
+        required: [true, 'Name is required'],
+        maxLength: [50, 'Name cannot be longer than 50 characters']
     },
     email: {
-        type: DataTypes.STRING(50),
-        allowNull: false,
+        type: String,
+        required: [true, 'Email is required'],
+        maxLength: [50, 'Email cannot be longer than 50 characters'],
         validate: {
-            isEmail: {
-                msg: 'Please enter a valid email address'
+            validator: function(v) {
+                return /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(v);
             },
-            is: {
-                args: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                msg: 'Please enter a valid email address'
-            }
+            message: 'Please enter a valid email address'
         }
     },
     subject: {
-        type: DataTypes.STRING(),
-        allowNull: false
+        type: String,
+        required: [true, 'Subject is required']
     },
     message: {
-        type: DataTypes.TEXT,
-        allowNull: false
+        type: String,
+        required: [true, 'Message is required']
     },
     post_date: {
-        type: DataTypes.DATE,
-        allowNull: false
+        type: Date,
+        required: [true, 'Post date is required']
     },
     response: {
-        type: DataTypes.TEXT,
-        allowNull: true,
-        defaultValue: null
+        type: String,
+        default: null
     },
     response_date: {
-        type: DataTypes.DATE,
-        allowNull: true,
-        defaultValue: null
-    }   
-}, {
-    tableName: 'contacts',
-    underscored: true
-}, {
-    options: {
-        underscored: true,
-        tableName: "contacts"
+        type: Date,
+        default: null
     }
+}, {
+    timestamps: true,
+    collection: 'contacts'
 });
 
+const Contact = mongoose.model('Contact', contactSchema);
 
 module.exports = Contact;

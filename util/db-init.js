@@ -1,6 +1,4 @@
-const sequelize = require("./database");
-
-const modelConfig = require("./model-config");
+const mongoose = require("mongoose");
 
 const Trainer = require("../models/trainer-model");
 const trainerData = require("../data/trainers.json");
@@ -17,25 +15,36 @@ const User = require("../models/user-model");
 const Testimonial = require("../models/testimonial-model");
 const testimonialData = require("../data/testimonials.json");
 
-modelConfig.configModelRelations();
+const MONGODB_URI = "mongodb+srv://merlin:superpassword@cluster0.v3bio.mongodb.net/final?retryWrites=true&w=majority&appName=Cluster0"
 
-sequelize
-  .sync({ force: true })
-  .then((result) => {
-    console.log("SUCCESS!", result);
-  })
-  .then(() => {
-    return Trainer.bulkCreate(trainerData);
-  })
-  .then(() => {
-    return Event.bulkCreate(eventData);
-  })
-  .then(() => {
-    return Course.bulkCreate(courseData);
-  })
-  .then(() => {
-    return Testimonial.bulkCreate(testimonialData);
+mongoose.connect(MONGODB_URI)
+  .then(async () => {
+    console.log("SUCCESS!");
+
+    await Promise.all([
+      await mongoose.model('Trainer').deleteMany({}),
+      await mongoose.model('Course').deleteMany({}),
+      await mongoose.model('Event').deleteMany({}),
+      await mongoose.model('Testimonial').deleteMany({})
+    ])
+    const trainers = await Trainer.insertMany(trainerData)
+    
+    const mappedCourseData = courseData.map((course, index) => ({
+      ...course,
+      trainer: trainers[index]._id
+    }));
+    
+    await Promise.all([
+      Course.insertMany(mappedCourseData),
+      Event.insertMany(eventData),
+      Testimonial.insertMany(testimonialData)
+    ]);
+
+    console.log("Data seeded successfully!");
   })
   .catch((err) => {
-    console.log(err);
+    console.error("Error seeding data:", err);
+  })
+  .finally(() => {
+    mongoose.connection.close();
   });

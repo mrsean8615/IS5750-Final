@@ -13,25 +13,23 @@ exports.postLogin = async (req, res, next) => {
     const { email, password } = req.body;
 
     try {
-        const user = await User.findOne({
-            where: {email: email}
-        });
+        const user = await User.findOne({ email: email });
 
         if (!user) {
-            return res.render('login', { title: 'Login', message: 'Invalid email or password', email });
+            req.flash('error', 'Invalid email or password');
+            return res.redirect('/auth/login');
         }
 
         const isValidPassword = await user.validatePassword(password);
-        console.log('Password valid:', isValidPassword);
 
         if(!isValidPassword) {
-            return res.render('login', { title: 'Login', message: 'Invalid email or password', email });
+            req.flash('error', 'Invalid email or password');
+            return res.redirect('/auth/login');
         }
 
         // Set session variables
         req.session.isLoggedIn = true;
-        req.session.username = user.username;
-        req.session.userId = user.id;
+        req.session.user = user;
 
         await new Promise((resolve, reject) => {
             req.session.save(err => {
@@ -39,8 +37,9 @@ exports.postLogin = async (req, res, next) => {
                 resolve();
             });
         });
-
+        req.flash('success', 'Login successful! Welcome back ' + user.firstName + '!');
         return res.redirect('/');
+        
 
     } catch (err) {
         console.error('Login error:', err);
@@ -52,30 +51,53 @@ exports.getSignUp = async (req, res, next) => {
 }
 
 exports.postSignUp = async (req, res, next) => {
-    const { email, name, password, confirm_password } = req.body;
+    const { email, firstName, lastName,  password, confirm_password } = req.body;
 
     try {
-
-        if (password !== confirm_password) {
-            return res.render('signup', { title: 'Sign Up', message: 'Passwords do not match', email, name, password, confirm_password });
+        
+        const existingUser = await User.findOne({ email: email });
+        if (existingUser) {
+            req.flash('error', 'Email already exists');
+            return res.render('signup', { title: 'Sign Up', message: '', email, firstName, lastName, password, confirm_password });
         }
+        if (password !== confirm_password) {
+            req.flash('error', 'Passwords do not match');
+            return res.render('signup', { title: 'Sign Up', message: '', email, firstName, lastName, password, confirm_password });
+        }
+
         await User.create({
-            username: name,
+            firstName: firstName,
+            lastName: lastName,
             email: email,
             password: password
         });
 
-        return res.redirect('/auth/login?authMessage=true');
+        req.flash('success', 'Account created successfully! Please login.');
+        return res.redirect('/auth/login');
     } catch (err) {
-        return res.render('signup', { title: 'Sign Up', message: '', email, name, password, confirm_password });
+        console.log(err)
+        req.flash('error', 'An error occurred during signup. Please try again.');
+        return res.render('signup', { title: 'Sign Up', message: '', email, firstName, lastName, password, confirm_password });
     }
 }
 
 exports.logout = async (req, res, next) => {
-    req.session.destroy(err => {
-        if (err) {
-            console.error('Logout error:', err);
-        }
+    try {
+        req.flash('success', 'Logout successful!');
+
+        delete req.session.user;
+        req.session.isLoggedIn = false;
+
+        await new Promise((resolve, reject) => {
+            req.session.save(err => {
+                if (err) reject(err);
+                resolve();
+            });
+        });
         res.redirect('/');
-    });
+    } catch(err) {
+        console.error('Logout error:', err);
+        req.flash('error', 'An error occurred during logout. Please try again.');
+        res.redirect('/');
+    }
 }

@@ -3,11 +3,12 @@ const formatDate = require("../util/date-convert");
 
 exports.getEvents = async (req, res, next) => {
   try {
-    const events = await Event.findAll({
-      order: [["date", "ASC"]],
-    });
+    const events = await Event.find()
+      .sort({ date: -1 })
+
     res.render("events", { title: "Events", events, formatDate });
   } catch (err) {
-    console.log(err);
+    err.message = 'Error fetching events. Please try again.'; 
+    next(err)
   }
 };

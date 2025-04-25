@@ -1,54 +1,70 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../util/database');
+const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const { Schema } = mongoose;
 
-const User = sequelize.define('user', {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        allowNull: false,
-        primaryKey: true
+const userSchema = new Schema({
+    firstName: {
+        type: String,
+        required: [true, 'First name is required'],
+        maxLength: [50, 'First name cannot be longer than 50 characters']
     },
-    username: {
-        type: DataTypes.STRING(50),
-        allowNull: false,
-        unique: true,
+    lastName: {
+        type: String,
+        required: [true, 'Last name is required'],
+        maxLength: [50, 'Last name cannot be longer than 50 characters']
     },
     email: {
-        type: DataTypes.STRING(50),
-        allowNull: false,
+        type: String,
+        required: [true, 'Email is required'],
         unique: true,
+        maxLength: [50, 'Email cannot be longer than 50 characters'],
         validate: {
-            isEmail: {
-                msg: 'Please enter a valid email address'
+            validator: function(v) {
+                return /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(v);
             },
-            is: {
-                args: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                msg: 'Please enter a valid email address'
-            }
+            message: 'Please enter a valid email address'
         }
     },
     password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            len: [6, 100]
-        }
+        type: String,
+        required: [true, 'Password is required'],
+        minLength: [6, 'Password must be at least 6 characters'],
+        maxLength: [100, 'Password cannot be longer than 100 characters']
     },
-
+    roles: {
+        type: [String],
+        enum: ['user', 'admin'],
+        default: ['user']
+    },
+    courses: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Course'
+    }]
 }, {
-    hooks: {
-        beforeCreate: async (user) => {
-            const salt = await bcrypt.genSalt(10);
-            user.password = await bcrypt.hash(user.password, salt);
-        }
-    },
-    tableName: 'users',
-    underscored: true
+    timestamps: true,
+    collection: 'users'
 });
 
-User.prototype.validatePassword = async function(password) {
+userSchema.pre('save', async function(next) {
+    if (this.isModified('password')) {
+        const salt = await bcrypt.genSalt(10);
+        this.password = await bcrypt.hash(this.password, salt);
+    }
+    next();
+});
+
+userSchema.methods.validatePassword = async function(password) {
     return await bcrypt.compare(password, this.password);
 };
+
+userSchema.virtual('fullName').get(function() {
+    return `${this.firstName} ${this.lastName}`;
+});
+
+userSchema.methods.hasRole = function(role) {
+    return this.roles.includes(role);
+};
+
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;

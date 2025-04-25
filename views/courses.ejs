@@ -58,10 +58,27 @@
                       <%=course.trainer.name%>
                     </a>
                   </div>
+
                   <div class="trainer-rank d-flex align-items-center"><i class="bi bi-person user-icon"></i>&nbsp;
-                    <%=course.registrants%>
+                    <%=course.registrants.length%>
                       &nbsp;&nbsp; <i class="bi bi-heart heart-icon"></i>&nbsp;<%=course.likes%>
+                        <% if (isAdmin) { %>
+                          &nbsp;&nbsp;
+                          <a href="/courses/admin/edit/<%=course.titleSlug%>" class="text-primary" title="Edit Course">
+                            <i class="bi bi-pencil-square"></i>
+                          </a>
+                          <% } %>
                   </div>
+                </div>
+                <div class="mt-3">
+                  <a href="/courses/<%=course.titleSlug%>/register" class="btn w-100 <%= !course.isUserRegistered(user._id) 
+                          ? course.capacity > 0 
+                              ? 'btn-primary' 
+                              : 'btn-secondary disabled' 
+                          : 'btn-danger' %>">
+                    <%= !course.isUserRegistered(user._id) ? course.capacity==0 ? 'Course Full' : 'Register for Course'
+                      : 'Unregister from Course' %>
+                  </a>
                 </div>
               </div>
             </div>

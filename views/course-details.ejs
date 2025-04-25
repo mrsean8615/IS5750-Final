@@ -17,7 +17,8 @@
       <div class="container">
         <ol>
           <li><a href="/">Home</a></li>
-          <li class="current">Course Details</li>
+          <li><a href="/courses">Courses</a></li>
+          <li class="current">Register</li>
         </ol>
       </div>
     </nav>
@@ -33,9 +34,14 @@
           <h3>
             <%=course.title%>
           </h3>
-          <p>
-            <%=course.description%>
-          </p>
+          <% if (isAdmin) { %>
+            <a href="/courses/admin/edit/<%=course.titleSlug%>" class="btn btn-outline-primary">
+              <i class="bi bi-pencil-square"></i> Edit Course
+            </a>
+            <% } %>
+              <p>
+                <%=course.description%>
+              </p>
         </div>
         <div class="col-lg-4">
           <div class="course-info d-flex justify-content-between align-items-center">
@@ -54,7 +60,7 @@
           <div class="course-info d-flex justify-content-between align-items-center">
             <h5>Available Seats</h5>
             <p>
-              <%=course.registrants%>
+              <%=course.capacity%>
             </p>
           </div>
 
@@ -64,6 +70,34 @@
               5:00 PM - 7:00 PM
             </p>
           </div>
+          <% if (!isAuthenticated) { %>
+            <div class="alert alert-warning">
+              Please <a href="/auth/login">login</a> to register for this course.
+            </div>
+            <% } else { %>
+              <% if (course.isUserRegistered(user._id)) { %>
+                <div class="text-center mb-4">
+                  <a href="/courses/<%= course.titleSlug %>/register" class="get-started-btn btn btn-lg fs-5 fw-bold"
+                    style="background: #dc3545; border-color: #dc3545; color: white;">
+                    Unregister from Course
+                  </a>
+                </div>
+                <% } else { %>
+                  <% if (course.capacity==0) { %>
+                    <div class="alert alert-danger">
+                      This course is fully booked.
+                    </div>
+                    <% } else { %>
+                      <div class="text-center mb-4">
+                        <a href="<%= isAuthenticated ? `/courses/${course.titleSlug}/register` : '/auth/login' %>"
+                          class="get-started-btn btn btn-lg fs-5 fw-bold"
+                          style="background: #5fcf80; border-color: #5fcf80; color: white;">
+                          Register Now
+                        </a>
+                      </div>
+                      <% } %>
+                        <% } %>
+                          <% } %>
         </div>
       </div>
     </div>

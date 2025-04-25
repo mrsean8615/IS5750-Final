@@ -7,9 +7,8 @@
     "description": "This comprehensive course covers Python basics, data manipulation with Pandas, data visualization with Matplotlib, and introduction to machine learning with Scikit-learn. Perfect for beginners in data science.",
     "price": 299.99,
     "capacity": 30,
-    "registrants": 25,
     "likes": 45,
-    "trainerId": 1
+    "trainer": ""
   },
   {
     "id": 2,
@@ -19,9 +18,8 @@
     "description": "Dive deep into modern design principles, user research methods, wireframing, prototyping, and user testing. Learn industry-standard tools like Figma and Adobe XD.",
     "price": 249.99,
     "capacity": 25,
-    "registrants": 20,
     "likes": 38,
-    "trainerId": 2
+    "trainer": ""
   },
   {
     "id": 3,
@@ -31,9 +29,8 @@
     "description": "Complete guide to modern JavaScript development. Cover everything from ES6+ features to building full-stack applications using Node.js, Express, React, and MongoDB.",
     "price": 399.99,
     "capacity": 35,
-    "registrants": 28,
     "likes": 52,
-    "trainerId": 3
+    "trainer": ""
   },
   {
     "id": 4,
@@ -43,9 +40,8 @@
     "description": "Comprehensive introduction to cybersecurity, covering network security, penetration testing, vulnerability assessment, and security best practices. Includes hands-on labs and real-world scenarios.",
     "price": 349.99,
     "capacity": 20,
-    "registrants": 18,
     "likes": 41,
-    "trainerId": 4
+    "trainerId": "6807fb615668717f60f67891"
   },
   {
     "id": 5,
@@ -55,9 +51,8 @@
     "description": "Learn to develop mobile applications for both iOS and Android platforms using React Native. Cover app architecture, native components, state management, and deployment processes.",
     "price": 329.99,
     "capacity": 25,
-    "registrants": 22,
     "likes": 35,
-    "trainerId": 5
+    "trainer": ""
   },
   {
     "id": 6,
@@ -67,8 +62,7 @@
     "description": "Comprehensive guide to AWS cloud services, covering EC2, S3, Lambda, API Gateway, and more. Learn to design scalable and secure cloud infrastructure for enterprise applications.",
     "price": 449.99,
     "capacity": 30,
-    "registrants": 27,
     "likes": 48,
-    "trainerId": 6
+    "trainer": ""
   }
 ]

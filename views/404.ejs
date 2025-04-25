@@ -1,0 +1,55 @@
+<main class="main">
+    <div class="page-title" data-aos="fade">
+        <div class="heading">
+            <div class="container">
+                <div class="row d-flex justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h1>404 - Page Not Found</h1>
+                        <p class="mb-0">
+                            <%= message %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">Home</a></li>
+                    <li class="current">404 Error</li>
+                </ol>
+            </div>
+        </nav>
+    </div>
+
+    <section class="section">
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="error-content">
+                        <i class="bi bi-exclamation-triangle display-1 text-warning mb-4"></i>
+                        <h2 class="mb-4">Oops! Something's Missing</h2>
+                        <p class="mb-4">The page you are looking for might have been removed, had its name changed, or
+                            is temporarily unavailable.</p>
+                        <a href="/" class="btn btn-primary">
+                            <i class="bi bi-house-door"></i> Return Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<style>
+    .error-content {
+        padding: 40px;
+        background: var(--surface-color);
+        border-radius: 8px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .error-content .bi-exclamation-triangle {
+        color: var(--warning-color);
+    }
+</style>

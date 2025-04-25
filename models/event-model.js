@@ -1,42 +1,36 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("../util/database");
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-const Event = sequelize.define(
-  "event",
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      allowNull: false,
-      primaryKey: true,
-    },
+const eventSchema = new Schema({
     title: {
-      type: DataTypes.STRING(50),
-      allowNull: false,
+        type: String,
+        required: [true, 'Title is required'],
+        maxLength: [50, 'Title cannot be longer than 50 characters']
     },
     summary: {
-      type: DataTypes.STRING,
-      allowNull: false,
+        type: String,
+        required: [true, 'Summary is required']
     },
     imageUrl: {
-      type: DataTypes.STRING(350),
-      allowNull: false,
-      validate: {
-        is: {
-          args: /\.(jpg|png)$/i,
-          msg: "Image URL must end with jpg or png",
-        },
-      },
+        type: String,
+        required: [true, 'Image URL is required'],
+        maxLength: [350, 'Image URL cannot be longer than 350 characters'],
+        validate: {
+            validator: function(v) {
+                return /\.(jpg|png)$/i.test(v);
+            },
+            message: 'Image URL must end with jpg or png'
+        }
     },
     date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-  },
-  {
-    tableName: "events",
-    underscored: true,
-  }
-);
+        type: Date,
+        required: [true, 'Date is required']
+    }
+}, {
+    timestamps: true,
+    collection: 'events'
+});
+
+const Event = mongoose.model('Event', eventSchema);
 
 module.exports = Event;

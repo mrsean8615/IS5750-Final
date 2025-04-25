@@ -1,42 +1,44 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("../util/database");
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-const Trainer = sequelize.define(
-  "trainer",
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      allowNull: false,
-      primaryKey: true,
-    },
+const trainerSchema = new Schema({
     name: {
-      type: DataTypes.STRING(50),
-      allowNull: false,
+        type: String,
+        required: [true, 'Name is required'],
+        maxLength: [50, 'Name cannot be longer than 50 characters']
     },
     subject: {
-      type: DataTypes.STRING,
-      allowNull: false,
+        type: String,
+        required: [true, 'Subject is required']
     },
     imageUrl: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        is: {
-          args: /\.(jpg|png)$/i,
-          msg: "Image URL must end with jpg or png",
-        },
-      },
+        type: String,
+        required: [true, 'Image URL is required'],
+        validate: {
+            validator: function(v) {
+                return /\.(jpg|png)$/i.test(v);
+            },
+            message: 'Image URL must end with jpg or png'
+        }
     },
     description: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-  },
-  {
-    tableName: "trainers",
-    underscored: true,
-  }
-);
+        type: String,
+        required: [true, 'Description is required']
+    }
+}, {
+    timestamps: true,
+    collection: 'trainers',
+    toJSON: {virtuals: true},
+    toObject: {virtuals: true}
+});
+
+trainerSchema.virtual('courses', {
+    ref: 'Course',
+    localField: '_id',
+    foreignField: 'trainer',
+    count: true,
+});
+
+const Trainer = mongoose.model('Trainer', trainerSchema);
 
 module.exports = Trainer;
