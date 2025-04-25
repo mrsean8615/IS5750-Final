@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const Course = require('../models/course-model');
 const axios = require('axios');
+require('dotenv').config();
 
 exports.getToken = async (req, res, next) => {
     try {
@@ -9,7 +10,7 @@ exports.getToken = async (req, res, next) => {
                 type: 'api_access',
                 timestamp: Date.now(),
             },
-            'secret',
+            process.env.JWT_SECRET,
             {expiresIn: '24h'}
             
         );

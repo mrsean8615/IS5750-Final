@@ -8,14 +8,15 @@ const session = require('express-session');
 const MongoDBStore = require("connect-mongodb-session")(session);
 const flash = require("connect-flash");
 const path = require("path");
+require("dotenv").config();
 
-const MONGODB_URI = "mongodb+srv://merlin:superpassword@cluster0.v3bio.mongodb.net/final?retryWrites=true&w=majority&appName=Cluster0"
+const MONGODB_URI = process.env.MONGODB_URI
 
 // Create MongoDB session store
 const store = new MongoDBStore({
     uri: MONGODB_URI,
     collection: "sessions",
-    expires: 1000 * 60 * 60 * 24 // 1 day
+    expires: 1000 * 60 * 60 * 24 
 });
 
 store.on("error", function(error) {
@@ -36,7 +37,7 @@ app.use(expressLayouts);
 
 // Session middleware
 app.use(session({
-    secret: 'supersecret-key-for-IS5750-final',
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true, 
     store: store,
@@ -87,7 +88,7 @@ mongoose
     .connect(MONGODB_URI)
     .then((result) => {
         console.log("Connected to MongoDB");
-        return app.listen(3000);
+        return app.listen(process.env.PORT || 3000);
     })
     .catch((err) => {
         console.log("Error connecting to MongoDB:", err);

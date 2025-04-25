@@ -4487,3 +4487,8 @@
 [0mGET / [36m304[0m 433.758 ms - -[0m
 [0mGET /trainers/admin/manage [36m304[0m 144.447 ms - -[0m
 [0mGET /trainers/admin/create [32m200[0m 1.579 ms - 11610[0m
+[0mGET / [32m200[0m 528.244 ms - 28101[0m
+[0mGET /auth/login [32m200[0m 10.886 ms - 10579[0m
+[0mPOST /auth/login [36m302[0m 227.569 ms - 30[0m
+[0mGET / [32m200[0m 430.553 ms - 28863[0m
+[0mGET /trainers/admin/manage [32m200[0m 156.008 ms - 21522[0m
