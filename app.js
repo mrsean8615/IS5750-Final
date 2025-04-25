@@ -58,7 +58,7 @@ app.use((req, res, next) => {
 });
 
 
-// app.use(requestLogger);
+app.use(requestLogger);
 
 //controllers
 const errorController = require("./controllers/error-controller");

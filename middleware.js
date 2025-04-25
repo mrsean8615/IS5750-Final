@@ -5,14 +5,12 @@ const multer = require('multer');
 
 
 
-const accessLogStream = fs.createWriteStream(
-  path.join(__dirname, 'logs', 'logRequests.txt'),
-  { flags: 'a' }
-);
+// const accessLogStream = fs.createWriteStream(
+//   path.join(__dirname, 'logs', 'logRequests.txt'),
+//   { flags: 'a' }
+// );
 
-const requestLogger = morgan('dev', {
-    stream: accessLogStream
-})
+const requestLogger = (req, res, next) => next()
 
 const isAuth = (req, res, next) => {
   if(!req.session.isLoggedIn) {
